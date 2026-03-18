@@ -1,0 +1,653 @@
+/* ==========================================
+   1. RESET, FONTES E CORES (TEMA DARK VIBRANTE)
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    outline: none; /* Remove bordas de foco padrão */
+}
+
+:root {
+    /* Cores Premium Agita Lane */
+    --fundo-app: #1a0033;       /* Roxo ultra profundo (quase preto) */
+    --roxo-card: #3d0066;       /* Roxo médio para os cards */
+    --roxo-claro: #f3e5f5;      /* Lilás suave (para textos secundários) */
+    --laranja-neon: #ff6600;    /* Laranja vibrante (contraste principal) */
+    --amarelo-destaque: #ffcc00; /* Amarelo (para preços e números) */
+    --texto-branco: #ffffff;
+    --texto-preto: #000000;
+}
+
+body {
+    background-color: var(--fundo-app);
+    color: var(--texto-branco);
+    overflow-x: hidden;
+    width: 100%;
+    scroll-behavior: smooth; /* Rolagem suave */
+}
+
+/* ==========================================
+   HEADER / BANNER - NÍVEL SÊNIOR
+   ========================================== */
+/* ==========================================
+   BANNER SÊNIOR - REDONDINHO E COM MOVIMENTO
+   ========================================== */
+
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 280px; /* Altura ideal */
+    
+    /* Bordas arredondadas nível Sênior */
+    border-radius: 0 0 50px 50px; 
+    
+    /* Importante: esconde a imagem que sobrar das bordas */
+    overflow: hidden; 
+    
+    /* Sombra para dar profundidade */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8) saturate(1.2);
+    
+    /* O EFEITO DE MOVIMENTO (ZOOM) */
+    animation: zoomSuave 15s infinite alternate ease-in-out;
+}
+
+/* Criando o movimento de "respirar" da imagem */
+@keyframes zoomSuave {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.12); /* A imagem cresce levemente */
+    }
+}
+
+.banner-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradiente para o nome Agita Lane aparecer bem */
+    background: linear-gradient(to bottom, transparent 30%, rgba(26, 0, 51, 0.9) 90%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px 25px;
+    box-sizing: border-box;
+}
+
+.banner-content h1 {
+    font-size: 32px;
+    color: #ffffff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /* Animação para o título subir ao carregar */
+    animation: sobeTexto 1s ease-out;
+}
+
+@keyframes sobeTexto {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animação Sutil */
+@keyframes bannerAnimate {
+    from { transform: scale(1.0); }
+    to { transform: scale(1.1); }
+}
+
+/* AJUSTE PARA CELULAR (BANNER AINDA MAIS FINO) */
+@media (max-width: 600px) {
+    .hero-banner {
+        height: 180px; /* No celular ele fica bem compacto, focado no conteúdo */
+    }
+    .banner-content h1 {
+        font-size: 1.8rem;
+    }
+    .banner-content p {
+        font-size: 0.8rem;
+    }
+}
+/* Animação Senior: A imagem se move levemente sozinha */
+@keyframes bannerAnimate {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+/* Ajuste para Celular */
+@media (max-width: 600px) {
+    .hero-banner {
+        height: 40vh; /* Menor no celular para sobrar espaço pro menu */
+    }
+    .banner-content h1 {
+        font-size: 2rem;
+    }
+}
+/* ==========================================
+   3. CARDS (EFEITO GLASSMORPHISM SÊNIOR)
+   ========================================== */
+.card {
+    padding: 40px 10%; /* Margens elegantes no PC */
+    margin: 30px 5%;
+    background: rgba(61, 0, 102, 0.3); /* Roxo transparente */
+    backdrop-filter: blur(15px);        /* Embaçado de vidro */
+    -webkit-backdrop-filter: blur(15px); /* Suporte para Safari */
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); /* Sombra de profundidade */
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+/* Círculo do número com brilho amarelo */
+.step {
+    background: var(--amarelo-destaque);
+    color: var(--texto-preto);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.2rem;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    transition: 0.3s;
+}
+
+.card-header h2 {
+    color: var(--texto-branco);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+}
+
+/* ==========================================
+   4. GRIDS E ITENS (MICROINTERAÇÕES)
+   ========================================== */
+
+
+.grid-checkbox {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+/* Estilo dos Botões de Tamanho (Efeito Sênior) */
+.opt-tamanho, .opt-batida {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    cursor: pointer;
+    color: var(--texto-branco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação suave */
+}
+
+/* Efeito Hover (Microinteração) */
+.opt-tamanho:hover, .opt-batida:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-8px) scale(1.02); /* Sobe e cresce levemente */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ESTILO ATIVO (CLICADO) COM BRILHO LARANJA */
+.opt-tamanho.active, .opt-batida.active {
+    border-color: var(--laranja-neon);
+    background: rgba(255, 102, 0, 0.1);
+    box-shadow: 0 0 25px rgba(255, 102, 0, 0.3);
+}
+
+/* Animação de clique (Active) */
+.opt-tamanho:active, .opt-batida:active {
+    transform: scale(0.97) translateY(2px); /* Pequeno recuo de clique */
+}
+/* GRID DE OPÇÕES (Ajustado para fotos maiores) */
+.grid-options {
+    display: grid;
+    /* Aumentamos o tamanho mínimo de 200px para 250px para dar espaço à foto */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 30px;
+    padding: 10px 0;
+}
+
+/* CONTAINER DOS PRODUTOS */
+.opt-tamanho, .opt-batida {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px; /* Bordas mais redondas para combinar com as fotos grandes */
+    padding: 30px 20px; /* Mais respiro interno */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* A FOTO DO PRODUTO (O "BRILHO" DO CARDÁPIO) */
+.img-produto {
+    width: 160px; /* Aumentamos de 90px/100px para 160px */
+    height: auto;
+    margin-bottom: 20px;
+    /* Efeito de sombra para a garrafa não parecer "colada" no fundo */
+    filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.6));
+    transition: transform 0.3s ease;
+}
+
+/* Efeito de flutuação na foto quando passa o mouse */
+.opt-tamanho:hover .img-produto {
+    transform: scale(1.1) rotate(2deg); /* A foto cresce e inclina levemente */
+}
+
+/* Ajuste do Texto do Produto */
+.opt-tamanho strong {
+    font-size: 1.3rem; /* Nome do produto maior para acompanhar a foto */
+    color: var(--texto-branco);
+    margin-bottom: 5px;
+}
+
+/* AJUSTE PARA CELULAR (Para não ficar gigante demais na tela pequena) */
+@media (max-width: 600px) {
+    .grid-options {
+        grid-template-columns: 1fr; /* 1 coluna no celular para a foto brilhar sozinha */
+        gap: 20px;
+    }
+    .img-produto {
+        width: 180px; /* No celular a foto fica ainda maior em uma coluna */
+    }
+    .opt-tamanho {
+        padding: 40px 20px;
+    }
+}
+
+.opt-tamanho strong {
+    font-size: 1.1rem;
+    color: var(--roxo-claro);
+}
+
+/* Preço Amarelo Neon */
+.preco-base {
+    color: var(--amarelo-destaque);
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Cremes Organizas (Dark) */
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.checkbox-wrapper:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.checkbox-wrapper input {
+    accent-color: var(--laranja-neon); /* Cor do check laranja */
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.checkbox-wrapper label {
+    font-size: 1rem;
+    color: var(--roxo-claro);
+    cursor: pointer;
+}
+
+/* Tag Laranja da Nutella (+R$2) */
+.aviso-nutella {
+    background: var(--laranja-neon);
+    color: var(--texto-preto);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* ==========================================
+   5. RESUMO E CHECKOUT (TELA CHEIA EFEITO FOGO)
+   ========================================= */
+.cart-box {
+    margin-bottom: 120px; /* Espaço para os botões flutuantes não cobrirem */
+}
+
+.summary-box {
+    background: linear-gradient(135deg, var(--roxo-card), var(--fundo-app));
+    padding: 30px;
+    border-radius: 20px;
+    border: 3px solid var(--laranja-neon);
+    box-shadow: 0 0 30px rgba(255, 102, 0, 0.2); /* Brilho laranja sutil */
+}
+
+.resumo-intern p {
+    color: var(--roxo-claro);
+    margin-bottom: 10px;
+}
+
+.total-pedido {
+    color: var(--laranja-neon);
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-shadow: 0 0 15px rgba(255, 102, 0, 0.5); /* Efeito neon */
+}
+
+/* Campos de Texto Dark Organizas */
+.checkout-fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.checkout-fields input, .checkout-fields select {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--texto-branco);
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.checkout-fields input:focus {
+    border-color: var(--laranja-neon);
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.2);
+}
+
+/* Botão padrão Finalizar (Escondido se o flutuante estiver visível, opcional) */
+.btn-finish {
+    display: none; /* Vamos usar o flutuante como principal no PC e Mobile */
+}
+
+/* ==========================================
+   6. BOTÕES FLUTUANTES (INTERAÇÃO SÊNIOR)
+   ========================================== */
+
+/* Botão WhatsApp (Principal) */
+.btn-floating-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #25d366, #1ebd5e);
+    color: white;
+    border: none;
+    border-radius: 50px; /* Formato pílula */
+    padding: 15px 30px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-floating-whatsapp img {
+    width: 24px;
+    height: 24px;
+}
+
+.btn-floating-whatsapp:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.7);
+}
+
+/* Botão Admin (⚙️ Secundário) */
+.btn-floating-admin {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.btn-floating-admin:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: rotate(90deg); /* Gira quando passa o mouse */
+}
+
+/* ==========================================
+   7. PAINEL ADMIN E MODAL (DARK)
+   ========================================== */
+.admin-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-content {
+    background: var(--roxo-card);
+    padding: 30px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 500px;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.admin-title { color: var(--amarelo-destaque); text-align: center; margin-bottom: 20px; }
+
+.admin-section input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.btn-add-admin {
+    width: 100%;
+    background: var(--laranja-neon);
+    color: var(--texto-preto);
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin-hr { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0; }
+
+.close { color: rgba(255,255,255,0.5); position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; }
+
+/* ==========================================
+   8. AJUSTES PARA CELULAR (OBRIGATÓRIO)
+   ========================================== */
+@media (max-width: 600px) {
+    .card {
+        padding: 25px 15px; /* Margens menores no celular */
+        margin: 20px 10px;
+    }
+    .card-header h2 { font-size: 1.3rem; }
+    .grid-options {
+        grid-template-columns: 1fr 1fr; /* 2 colunas no celular */
+        gap: 10px;
+    }
+    .opt-tamanho {
+        padding: 15px;
+    }
+    .img-produto {
+        width: 70px;
+    }
+    .opt-tamanho strong {
+        font-size: 0.9rem;
+    }
+    .total-pedido {
+        font-size: 2rem !important;
+    }
+    /* Ajuste dos botões flutuantes no celular */
+    .btn-floating-whatsapp {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    .btn-floating-admin {
+        bottom: 20px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+}
+.footer-container {
+    display: block !important; /* Força a exibição */
+    background-color: #2c004d !important; /* Cor bem escura para destacar */
+    color: white !important;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 50px;
+    width: 100%;
+    position: relative;
+    z-index: 10; /* Garante que fique acima do fundo */
+    margin-bottom: 100px; /* Espaço para os botões não cobrirem */
+}
+
+.dev-signature a {
+    color: #00ffcc !important;
+    text-decoration: underline;
+}
+
+
+/* 1. O FUNDO DO SITE (Para o card branco aparecer) */
+body {
+    background-color: #f4f4f9; /* Um cinza bem clarinho para dar contraste */
+    color: #333; /* Texto principal em cinza escuro (quase preto) */
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 1. FUNDO GERAL DO SITE */
+body {
+    background-color: #1a0033; /* Roxo quase preto para destacar os cards */
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+}
+
+/* 2. O CARD ESTILO PREMIUM */
+.card {
+    background: #330066; /* Roxo Açaí Profundo */
+    border-radius: 30px; /* Bordas bem arredondadas "Sênior" */
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border: 1px solid #4b0082; /* Borda sutil para dar profundidade */
+    transition: all 0.3s ease;
+}
+
+/* 3. TÍTULOS DENTRO DOS CARDS */
+.card-header h2 {
+    color: #ffcc00 !important; /* Amarelo Ouro para os títulos brilharem */
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.step {
+    background: #ffcc00 !important;
+    color: #330066 !important;
+    font-weight: bold;
+    border-radius: 50%; /* Bolinha perfeita */
+}
+
+/* 4. BOTÕES DE TAMANHO E BATIDA */
+.opt-tamanho, .opt-batida {
+    background: #4b0082 !important; /* Roxo um pouco mais claro que o card */
+    border: 2px solid transparent !important;
+    border-radius: 20px !important; /* Bordas arredondadas nos botões também */
+    color: #ffffff !important;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+/* Quando o cliente clica no botão */
+.opt-tamanho.active, .opt-batida.active {
+    background: #ffcc00 !important; /* Vira amarelo ao selecionar */
+    color: #330066 !important; /* Texto roxo para ler bem no fundo amarelo */
+    border-color: #ffffff !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+}
+
+/* 5. CHECKBOXES (CREMES) */
+.checkbox-wrapper {
+    background: #3d007a;
+    border-radius: 15px;
+    margin: 6px 0;
+    padding: 12px;
+    border: 1px solid #5a00b3;
+}
+
+.checkbox-wrapper label {
+    color: #ffffff !important;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* 6. RESUMO DO PEDIDO */
+.summary-box {
+    background: #26004d !important;
+    border-radius: 20px;
+    border: 1px dashed #ffcc00;
+    color: #ffffff;
+    padding: 15px;
+}
+
+.total-pedido {
+    color: #ffcc00 !important;
+    font-size: 24px;
+}
